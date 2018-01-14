@@ -49,13 +49,13 @@ class DashboardServiceProvider extends ServiceProvider
         //     __DIR__ . '/views' => base_path('resources/views/vendor/laravel-admin'),
         // ], 'views');
 
-        $this->loadViewsFrom(__DIR__ . '/views', 'laravel-admin');
+        // $this->loadViewsFrom(__DIR__ . '/views', 'laravel-admin');
 
-        $menus = [];
-        if (File::exists(base_path('resources/laravel-admin/menus.json'))) {
-            $menus = json_decode(File::get(base_path('resources/laravel-adminj/menus.json')));
-            view()->share('laravelAdminMenus', $menus);
-        }
+        // $menus = [];
+        // if (File::exists(base_path('resources/laravel-admin/menus.json'))) {
+        //     $menus = json_decode(File::get(base_path('resources/laravel-adminj/menus.json')));
+        //     view()->share('laravelAdminMenus', $menus);
+        // }
     }
 
     /**
