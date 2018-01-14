@@ -1,0 +1,38 @@
+{
+    "name": "fishmad/dashboard",
+    "license": "MIT",
+    "description": "Dashboard",
+    "keywords": [
+        "laravel",
+        "Dashboard"
+    ],
+    "authors": [
+        {
+            "name": "",
+            "email": "",
+            "homepage": ""
+        }
+    ],
+    "require": {
+        "php": ">=5.5.9",
+        "illuminate/support": "^5.5",
+        "laravelcollective/html": "~5.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Fishmad\\Dashboard\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Fishmad\\Dashboard\\DashboardServiceProvider",
+                "Collective\\Html\\HtmlServiceProvider"
+            ],
+            "aliases": {
+                "Form": "Collective\\Html\\FormFacade",
+                "HTML": "Collective\\Html\\HtmlFacade"
+            }
+        }
+    }
+}
