@@ -16,7 +16,6 @@
     "require": {
         "php": ">=5.5.9",
         "illuminate/support": "^5.1",
-        "appzcoder/crud-generator": "^3.0",
         "laravelcollective/html": "~5.1"
     },
     "autoload": {
