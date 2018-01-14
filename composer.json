@@ -16,23 +16,19 @@
     "require": {
         "php": ">=5.5.9",
         "illuminate/support": "^5.1",
+        "appzcoder/crud-generator": "^3.0",
         "laravelcollective/html": "~5.1"
     },
     "autoload": {
         "psr-4": {
-            "Fishmad\\Dashboard\\": "src/"
+            "fishmad\\dashboard\\": "src/"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "Fishmad\\Dashboard\\DashboardServiceProvider",
-                "Collective\\Html\\HtmlServiceProvider"
-            ],
-            "aliases": {
-                "Form": "Collective\\Html\\FormFacade",
-                "HTML": "Collective\\Html\\HtmlFacade"
-            }
+                "fishmad\\dashboard\\DashboardServiceProvider"
+            ]
         }
     }
 }
