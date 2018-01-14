@@ -52,7 +52,7 @@ class DashboardCommand extends Command
         }
 
         $this->info("Publishing the assets");
-        $this->call('vendor:publish', ['--provider' => 'Appzcoder\CrudGenerator\CrudGeneratorServiceProvider', '--force' => true]);
+        //$this->call('vendor:publish', ['--provider' => 'Appzcoder\CrudGenerator\CrudGeneratorServiceProvider', '--force' => true]);
         $this->call('vendor:publish', ['--provider' => 'Fishmad\Dashboard\DashboardServiceProvider', '--force' => true]);
 
         $this->info("Dumping the composer autoload");
@@ -66,7 +66,7 @@ class DashboardCommand extends Command
         $routeFile = app_path('Http/routes.php');
         if (\App::VERSION() >= '5.3') {
             $routeFile = base_path('routes/web.php');
-        }a
+        }
 
         $routes =
             <<<EOD
