@@ -1,11 +1,11 @@
 <?php
 
-namespace Appzcoder\LaravelAdmin;
+namespace Fishmad\Dashboard;
 
 use File;
 use Illuminate\Support\ServiceProvider;
 
-class LaravelAdminServiceProvider extends ServiceProvider
+class DashboardServiceProvider extends ServiceProvider
 {
     /**
      * Indicates if loading of the provider is deferred.
@@ -66,7 +66,7 @@ class LaravelAdminServiceProvider extends ServiceProvider
     public function register()
     {
         $this->commands(
-            'Appzcoder\LaravelAdmin\LaravelAdminCommand'
+            'fishmad\dashboard\DashboardCommand'
         );
     }
 }
