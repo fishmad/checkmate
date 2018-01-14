@@ -1,35 +1,27 @@
 {
     "name": "fishmad/dashboard",
-    "license": "MIT",
     "description": "Dashboard",
-    "keywords": [
-        "laravel",
-        "Dashboard"
-    ],
+    "license": "MIT",
     "authors": [
         {
             "name": "fishmad",
             "email": "fishmadwebdesign@gmail.com",
-            "homepage": ""
         }
     ],
     "require": {
-        "php": ">=5.5.9",
-        "illuminate/support": "^5.1",
-        "laravelcollective/html": "~5.1"
+        "php": ">=7.0.0",
+        "illuminate/support": "5.5.*",
+        "laravelcollective/html": "5.5.*"
     },
     "require-dev": {
-      "mockery/mockery": "^0.9.6",
-      "phpunit/phpunit": "^5.7",
-      "orchestra/testbench": "^3.3"
+     // "mockery/mockery": "^0.9.6",
+     // "phpunit/phpunit": "^5.7",
+     // "orchestra/testbench": "^3.3"
    },
     "autoload": {
         "psr-4": {
-            "fishmad\\dashboard\\": "src/"
+            "Fishmad\\Dashboard\\": "src/"
           },
-          "classmap": [
-              "tests"
-          ]
       },
     "extra": {
         "laravel": {
@@ -39,4 +31,6 @@
             ]
         }
     }
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }
