@@ -66,7 +66,7 @@ class DashboardServiceProvider extends ServiceProvider
     public function register()
     {
         $this->commands(
-            'fishmad\dashboard\DashboardCommand'
+            'Fishmad\Dashboard\DashboardCommand'
         );
     }
 }
