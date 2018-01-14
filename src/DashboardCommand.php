@@ -64,7 +64,7 @@ class DashboardCommand extends Command
         $this->info("Adding the routes");
 
         $routeFile = app_path('Http/routes.php');
-        if (\App::VERSION() >= '5.5') {
+        if (\App::VERSION() >= '5.3') {
             $routeFile = base_path('routes/web.php');
         }a
 
