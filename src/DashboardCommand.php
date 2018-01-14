@@ -46,7 +46,7 @@ class DashboardCommand extends Command
             exit();
         }
 
-        if (\App::VERSION() >= '5.5') {
+        if (\App::VERSION() >= '5.3') {
             $this->info("Generating the authentication scaffolding");
             $this->call('make:auth');
         }
