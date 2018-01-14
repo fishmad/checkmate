@@ -1,6 +1,6 @@
 <?php
 
-namespace Appzcoder\CrudGenerator\Commands;
+namespace Fishmad\Dashboard\Commands;
 
 use File;
 use Illuminate\Console\Command;
