@@ -6,7 +6,7 @@ use File;
 use Illuminate\Console\Command;
 use Symfony\Component\Process\Process;
 
-class DashboardInstallerCommand extends Command
+class InstallCommand extends Command
 {
     /**
      * The name and signature of the console command.
