@@ -7,66 +7,69 @@ use Illuminate\Support\ServiceProvider;
 
 class DashboardServiceProvider extends ServiceProvider
 {
-    /**
-     * Indicates if loading of the provider is deferred.
-     *
-     * @var bool
-     */
-    protected $defer = false;
+  /**
+   * Indicates if loading of the provider is deferred.
+   *
+   * @var bool
+   */
+  protected $defer = false;
 
-    /**
-     * Perform post-registration booting of services.
-     *
-     * @return void
-     */
-    public function boot(\Illuminate\Routing\Router $router)
-    {
-        // $this->publishes([
-        //     __DIR__ . '/../publish/Middleware/' => app_path('Http/Middleware'),
-        // ]);
+  /**
+   * Perform post-registration booting of services.
+   *
+   * @return void
+   */
+  public function boot(\Illuminate\Routing\Router $router)
+  {
 
-        // $this->publishes([
-        //     __DIR__ . '/../publish/migrations/' => database_path('migrations'),
-        // ]);
+    // $this->publishes([
+    //     __DIR__ . '/../publish/migrations/' => database_path('migrations'),
+    // ]);
 
-        // $this->publishes([
-        //     __DIR__ . '/../publish/Model/' => app_path(),
-        // ]);
+    // $this->publishes([
+    //     __DIR__ . '/../publish/Model/' => app_path(),
+    // ]);
 
-        // $this->publishes([
-        //     __DIR__ . '/../publish/Controllers/' => app_path('Http/Controllers'),
-        // ]);
+    $this->publishes([
+        __DIR__ . '/../publish/config/crudgenerator.php' => config_path('crudgenerator.php'),
+    ]);
 
-        // $this->publishes([
-        //     __DIR__ . '/../publish/resources/' => base_path('resources'),
-        // ]);
+    $this->publishes([
+        __DIR__ . '/../publish/Controllers/' => app_path('Http/Controllers'),
+    ]);
 
-        // $this->publishes([
-        //     __DIR__ . '/../publish/crudgenerator.php' => config_path('crudgenerator.php'),
-        // ]);
+    $this->publishes([
+        __DIR__ . '/../publish/public/' => base_path('public'),
+    ]);
 
-        // $this->publishes([
-        //     __DIR__ . '/views' => base_path('resources/views/vendor/laravel-admin'),
-        // ], 'views');
+    $this->publishes([
+        __DIR__ . '/../publish/resources/' => base_path('resources'),
+    ]);
 
-        // $this->loadViewsFrom(__DIR__ . '/views', 'laravel-admin');
+    $this->publishes([
+        __DIR__ . '/../publish/resources/views' => base_path('resources/views/vendor/laravel-admin'),
+    ], 'views');
 
-        // $menus = [];
-        // if (File::exists(base_path('resources/laravel-admin/menus.json'))) {
-        //     $menus = json_decode(File::get(base_path('resources/laravel-adminj/menus.json')));
-        //     view()->share('laravelAdminMenus', $menus);
-        // }
-    }
+      $this->loadViewsFrom(__DIR__ . '/views', 'laravel-admin');
 
-    /**
-     * Register the service provider.
-     *
-     * @return void
-     */
-    public function register()
-    {
-        $this->commands(
-            'Fishmad\Dashboard\DashboardCommand'
-        );
-    }
+      // $menus = [];
+      // if (File::exists(base_path('resources/laravel-admin/menus.json'))) {
+      //     $menus = json_decode(File::get(base_path('resources/laravel-adminj/menus.json')));
+      //     view()->share('laravelAdminMenus', $menus);
+      // }
+
+  }
+
+  /**
+   * Register the service provider.
+   *
+   * @return void
+   */
+  public function register()
+  {
+    $this->commands(
+        'Fishmad\Dashboard\Commands\InstallCommand'
+    );
+  }
+  
 }

@@ -6,7 +6,7 @@ use File;
 use Illuminate\Console\Command;
 use Symfony\Component\Process\Process;
 
-class DashboardCommand extends Command
+class DashboardInstallerCommand extends Command
 {
     /**
      * The name and signature of the console command.
@@ -46,10 +46,10 @@ class DashboardCommand extends Command
             exit();
         }
 
-        if (\App::VERSION() >= '5.3') {
-            $this->info("Generating the authentication scaffolding");
-            $this->call('make:auth');
-        }
+//        if (\App::VERSION() >= '5.3') {
+//            $this->info("Generating the authentication scaffolding");
+//            $this->call('make:auth');
+//        }
 
         $this->info("Publishing the assets");
         $this->call('vendor:publish', ['--provider' => 'Fishmad\Dashboard\CrudGeneratorServiceProvider', '--force' => true]);
@@ -70,13 +70,13 @@ class DashboardCommand extends Command
 
         $routes =
             <<<EOD
-Route::get('admin', 'Admin\\AdminController@index');
+Route::get('admin', 'Dashboard\\DashboardController@index');
 Route::get('admin/generator', ['uses' => '\Fishmad\Dashboard\Controllers\ProcessController@getGenerator']);
 Route::post('admin/generator', ['uses' => '\Fishmad\Dashboard\Controllers\ProcessController@postGenerator']);
 EOD;
 
         File::append($routeFile, "\n" . $routes);
 
-        $this->info("Successfully installed Laravel Admin!");
+        $this->info("Successfully installed Fishmad Dashboard!");
     }
 }
