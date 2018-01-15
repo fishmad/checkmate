@@ -21,21 +21,21 @@ class CrudGeneratorServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->publishes([
-            __DIR__ . '/publish/config/crudgenerator.php' => config_path('crudgenerator.php'),
+            __DIR__ . '/../publish/config/crudgenerator.php' => config_path('crudgenerator.php'),
         ]);
 
         if (\App::VERSION() <= '5.2') {
             $this->publishes([
-                __DIR__ . '/publish/public/css/app.css' => public_path('css/app.css'),
+                __DIR__ . '/../publish/public/css/app.css' => public_path('css/app.css'),
             ]);
         }
 
         $this->publishes([
-            __DIR__ . '/publish/resources/stubs/' => base_path('resources/crud-generator/'),
+            __DIR__ . '/../publish/resources/stubs/' => base_path('resources/crud-generator/'),
         ]);
 		
         $this->publishes([
-            __DIR__ . '/publish/resources/views/' => base_path('resources/views/'),
+            __DIR__ . '/../publish/resources/views/' => base_path('resources/views/'),
         ]);
     }
 
