@@ -1,11 +1,11 @@
 <?php
 
-namespace Fishmad\Dashboard;
+namespace Fishmad\Checkmate;
 
 use File;
 use Illuminate\Support\ServiceProvider;
 
-class DashboardServiceProvider extends ServiceProvider
+class CheckmateServiceProvider extends ServiceProvider
 {
   /**
    * Indicates if loading of the provider is deferred.
@@ -47,14 +47,14 @@ class DashboardServiceProvider extends ServiceProvider
     ]);
 
     $this->publishes([
-        __DIR__ . '/../publish/resources/views' => base_path('resources/views/vendor/laravel-admin'),
+        __DIR__ . '/../publish/resources/views' => base_path('resources/views/vendor/checkmate'),
     ], 'views');
 
-      $this->loadViewsFrom(__DIR__ . '/views', 'laravel-admin');
+      $this->loadViewsFrom(__DIR__ . '/views', 'checkmate');
 
       // $menus = [];
-      // if (File::exists(base_path('resources/laravel-admin/menus.json'))) {
-      //     $menus = json_decode(File::get(base_path('resources/laravel-adminj/menus.json')));
+      // if (File::exists(base_path('resources/checkmate/menus.json'))) {
+      //     $menus = json_decode(File::get(base_path('resources/checkmate/menus.json')));
       //     view()->share('laravelAdminMenus', $menus);
       // }
 
@@ -68,7 +68,7 @@ class DashboardServiceProvider extends ServiceProvider
   public function register()
   {
     $this->commands(
-        'Fishmad\Dashboard\InstallCommand'
+        'Fishmad\Checkmate\InstallCommand'
     );
   }
 
