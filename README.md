@@ -1,5 +1,5 @@
-# Dashboard
+# Installation
 
-composer require fishmad/dashboard dev-master
+composer require fishmad/checkmate dev-master
 
-php artisan dashboard:install
+php artisan checkmate:install
