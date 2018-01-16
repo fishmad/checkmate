@@ -1,6 +1,6 @@
 <?php
 
-namespace Fishmad\Dashboard;
+namespace Fishmad\Checkmate;
 
 use File;
 use Illuminate\Console\Command;
@@ -13,14 +13,14 @@ class InstallCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'dashboard:install';
+    protected $signature = 'checkmate:install';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Install the Dashboard.';
+    protected $description = 'Install the Checkmate Dashboard & Crudmin.';
 
     /**
      * Create a new command instance.
@@ -52,8 +52,8 @@ class InstallCommand extends Command
 //        }
 
         $this->info("Publishing the assets");
-        $this->call('vendor:publish', ['--provider' => 'Fishmad\Dashboard\CrudGeneratorServiceProvider', '--force' => true]);
-        $this->call('vendor:publish', ['--provider' => 'Fishmad\Dashboard\DashboardServiceProvider', '--force' => true]);
+        $this->call('vendor:publish', ['--provider' => 'Fishmad\Checkmate\CrudGeneratorServiceProvider', '--force' => true]);
+        $this->call('vendor:publish', ['--provider' => 'Fishmad\Checkmate\CheckmateServiceProvider', '--force' => true]);
 
         $this->info("Dumping the composer autoload");
         (new Process('composer dump-autoload'))->run();
@@ -70,13 +70,13 @@ class InstallCommand extends Command
 
         $routes =
             <<<EOD
-Route::get('admin', 'Dashboard\\DashboardController@index');
-Route::get('admin/generator', ['uses' => '\Fishmad\Dashboard\Controllers\ProcessController@getGenerator']);
-Route::post('admin/generator', ['uses' => '\Fishmad\Dashboard\Controllers\ProcessController@postGenerator']);
+Route::get('admin', 'Checkmate\\CheckmateController@index');
+Route::get('admin/generator', ['uses' => '\Fishmad\Checkmate\Controllers\ProcessController@getGenerator']);
+Route::post('admin/generator', ['uses' => '\Fishmad\Checkmate\Controllers\ProcessController@postGenerator']);
 EOD;
 
         File::append($routeFile, "\n" . $routes);
 
-        $this->info("Successfully installed Fishmad Dashboard!");
+        $this->info("Successfully installed Fishmad Checkmate!");
     }
 }

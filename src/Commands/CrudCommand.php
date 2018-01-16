@@ -1,6 +1,6 @@
 <?php
 
-namespace Fishmad\Dashboard\Commands;
+namespace Fishmad\Checkmate\Commands;
 
 use File;
 use Illuminate\Console\Command;

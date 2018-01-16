@@ -1,6 +1,6 @@
 <?php
 
-namespace Fishmad\Dashboard\Controllers;
+namespace Fishmad\Checkmate\Controllers;
 
 use App\Http\Controllers\Controller;
 use Artisan;

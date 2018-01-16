@@ -1,6 +1,6 @@
 <?php
 
-namespace Fishmad\Dashboard;
+namespace Fishmad\Checkmate;
 
 use Illuminate\Support\ServiceProvider;
 
@@ -47,14 +47,14 @@ class CrudGeneratorServiceProvider extends ServiceProvider
     public function register()
     {
         $this->commands(
-            'Fishmad\Dashboard\Commands\CrudCommand',
-            'Fishmad\Dashboard\Commands\CrudControllerCommand',
-            'Fishmad\Dashboard\Commands\CrudModelCommand',
-            'Fishmad\Dashboard\Commands\CrudMigrationCommand',
-            'Fishmad\Dashboard\Commands\CrudViewCommand',
-            'Fishmad\Dashboard\Commands\CrudLangCommand',
-            'Fishmad\Dashboard\Commands\CrudApiCommand',
-            'Fishmad\Dashboard\Commands\CrudApiControllerCommand'
+            'Fishmad\Checkmate\Commands\CrudCommand',
+            'Fishmad\Checkmate\Commands\CrudControllerCommand',
+            'Fishmad\Checkmate\Commands\CrudModelCommand',
+            'Fishmad\Checkmate\Commands\CrudMigrationCommand',
+            'Fishmad\Checkmate\Commands\CrudViewCommand',
+            'Fishmad\Checkmate\Commands\CrudLangCommand',
+            'Fishmad\Checkmate\Commands\CrudApiCommand',
+            'Fishmad\Checkmate\Commands\CrudApiControllerCommand'
         );
     }
 }
