@@ -1,6 +1,6 @@
 {
-	"name": "fishmad/dashboard",
-	"description": "Dashboard",
+	"name": "fishmad/checkmate",
+	"description": "Checkmate Dashboard & Crudmin",
 	"license": "MIT",
 	"authors": [
 		{
@@ -15,14 +15,14 @@
 	},
 	"autoload": {
 		"psr-4": {
-			"Fishmad\\Dashboard\\": "src/"
+			"Fishmad\\Checkmate\\": "src/"
 		}
 	},
 	"extra": {
 		"laravel": {
 			"providers": [
-				"Fishmad\\Dashboard\\DashboardServiceProvider",
-				"Fishmad\\Dashboard\\CrudGeneratorServiceProvider"
+				"Fishmad\\Checkmate\\CheckmateServiceProvider",
+				"Fishmad\\Checkmate\\CrudGeneratorServiceProvider"
 			]
 		}
 	},
