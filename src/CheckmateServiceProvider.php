@@ -23,19 +23,19 @@ class CheckmateServiceProvider extends ServiceProvider
   {
 
     // $this->publishes([
-    //     __DIR__ . '/../publish/migrations/' => database_path('migrations'),
+    //     __DIR__ . '/../publish/Admin/migrations/' => database_path('migrations'),
     // ]);
 
     $this->publishes([
-        __DIR__ . '/../publish/Controllers/' => app_path('Http/Controllers'),
+        __DIR__ . '/../publish/Admin/Controllers/' => app_path('Http/Controllers'),
     ]);
 
     $this->publishes([
-        __DIR__ . '/../publish/resources/' => base_path('resources'),
+        __DIR__ . '/../publish/Admin/resources/' => base_path('resources'),
     ]);
 
     $this->publishes([
-        __DIR__ . '/../publish/resources/views' => base_path('resources/views/vendor/checkmate'),
+        __DIR__ . '/../publish/Admin/resources/views' => base_path('resources/views/vendor/checkmate'),
     ], 'views');
 
       $this->loadViewsFrom(__DIR__ . '/views', 'checkmate');

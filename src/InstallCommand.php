@@ -51,17 +51,19 @@ class InstallCommand extends Command
 //            $this->call('make:auth');
 //        }
 
-        $this->info("Publishing the assets");
-        $this->call('vendor:publish', ['--provider' => 'Fishmad\Checkmate\CrudGeneratorServiceProvider', '--force' => true]);
+        $this->info("-- Publish Admin items:");
         $this->call('vendor:publish', ['--provider' => 'Fishmad\Checkmate\CheckmateServiceProvider', '--force' => true]);
 
-        $this->info("Dumping the composer autoload");
+        $this->info("-- Publish CRUD Generators:");
+        $this->call('vendor:publish', ['--provider' => 'Fishmad\Checkmate\CrudGeneratorServiceProvider', '--force' => true]);
+
+        $this->info("-- Dump composer autoload");
         (new Process('composer dump-autoload'))->run();
 
-        $this->info("Migrating the database tables into your application");
+        $this->info("-- Migrating the database tables into your application");
         $this->call('migrate');
 
-        $this->info("Adding the routes");
+        $this->info("-- Append Checkmate routes to Laravel 'routes/web.php' file");
 
         $routeFile = app_path('Http/routes.php');
         if (\App::VERSION() >= '5.3') {
@@ -76,7 +78,15 @@ Route::post('admin/generator', ['uses' => '\Fishmad\Checkmate\Controllers\Proces
 EOD;
 
         File::append($routeFile, "\n" . $routes);
+        $this->info("routes added succesfully.");
 
         $this->info("Successfully installed Fishmad Checkmate!");
+        $this->info(" ");
+        $this->info("Login email: admin@mail.com");
+        $this->info("Password: password");
+        $this->info(" ");
+        $this->info("Please vist: https://localhost/yourapp/admin");
+
+
     }
 }
