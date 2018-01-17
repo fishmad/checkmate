@@ -54,8 +54,8 @@ class InstallCommand extends Command
         $this->info("-- Publish Admin items:");
         $this->call('vendor:publish', ['--provider' => 'Fishmad\Checkmate\CheckmateServiceProvider', '--force' => true]);
 
-        $this->info("-- Publish CRUD Generators:");
-        $this->call('vendor:publish', ['--provider' => 'Fishmad\Checkmate\CrudGeneratorServiceProvider', '--force' => true]);
+        // $this->info("-- Publish CRUD Generators:");
+        // $this->call('vendor:publish', ['--provider' => 'Fishmad\Checkmate\CrudGeneratorServiceProvider', '--force' => true]);
 
         $this->info("-- Dump composer autoload");
         (new Process('composer dump-autoload'))->run();

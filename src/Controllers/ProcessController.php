@@ -18,7 +18,8 @@ class ProcessController extends Controller
      */
     public function getGenerator()
     {
-        return view('checkmate::generator');
+        // return view('checkmate::admin.generator');
+        return view('admin.generator');
     }
 
     /**
@@ -75,7 +76,7 @@ class ProcessController extends Controller
         try {
             Artisan::call('crud:generate', $commandArg);
 
-            $menus = json_decode(File::get(base_path('resources/laravel-admin/menus.json')));
+            $menus = json_decode(File::get(base_path('resources/views/admin/menus.json')));
 
             $name = $commandArg['name'];
             $routeName = ($commandArg['--route-group']) ? $commandArg['--route-group'] . '/' . snake_case($name, '-') : snake_case($name, '-');
@@ -91,7 +92,7 @@ class ProcessController extends Controller
                 return $menu;
             }, $menus->menus);
 
-            File::put(base_path('resources/dashboard/menus.json'), json_encode($menus));
+            File::put(base_path('resources/views/admin/menus.json'), json_encode($menus));
 
             Artisan::call('migrate');
         } catch (\Exception $e) {
