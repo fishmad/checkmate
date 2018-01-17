@@ -7,7 +7,7 @@
                 <div class="panel-body">
                     <ul class="nav" role="tablist">
                             <li role="presentation">
-                                <a href="/generator">
+                                <a href="{{ url('/admin/generator') }}">
                                     Generator
                                 </a>
                             </li>
