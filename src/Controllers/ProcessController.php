@@ -18,7 +18,7 @@ class ProcessController extends Controller
      */
     public function getGenerator()
     {
-        return view('dashboard::generator');
+        return view('checkmate::generator');
     }
 
     /**

@@ -70,7 +70,7 @@ class InstallCommand extends Command
 
         $routes =
             <<<EOD
-Route::get('admin', 'Checkmate\\CheckmateController@index');
+Route::get('admin', 'Admin\\AdminController@index');
 Route::get('admin/generator', ['uses' => '\Fishmad\Checkmate\Controllers\ProcessController@getGenerator']);
 Route::post('admin/generator', ['uses' => '\Fishmad\Checkmate\Controllers\ProcessController@postGenerator']);
 EOD;
