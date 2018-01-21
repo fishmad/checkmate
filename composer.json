@@ -1,31 +1,36 @@
 {
-	"name": "fishmad/checkmate",
-	"description": "Checkmate Dashboard & Crudmin",
-	"license": "MIT",
-	"authors": [
-		{
-			"name": "fishmad",
-			"email": "fishmadwebdesign@gmail.com"
-		}
-	],
-	"require": {
-		"php": ">=7.0.0",
-		"illuminate/support": "5.5.*",
-		"laravelcollective/html": "5.5.*"
-	},
-	"autoload": {
-		"psr-4": {
-			"Fishmad\\Checkmate\\": "src/"
-		}
-	},
-	"extra": {
-		"laravel": {
-			"providers": [
-				"Fishmad\\Checkmate\\CheckmateServiceProvider",
-				"Fishmad\\Checkmate\\CrudGeneratorServiceProvider"
-			]
-		}
-	},
-	"minimum-stability": "dev",
-	"prefer-stable": true
+    "name": "appzcoder/laravel-admin",
+    "license": "MIT",
+    "description": "Laravel Admin Panel",
+    "keywords": [
+        "laravel",
+        "admin",
+        "laravel admin",
+        "laravel admin panel"
+    ],
+    "authors": [
+        {
+            "name": "Sohel Amin",
+            "email": "sohelamincse@gmail.com",
+            "homepage": "http://www.appzcoder.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.5.9",
+        "illuminate/support": "^5.1",
+        "appzcoder/crud-generator": "^3.0",
+        "laravelcollective/html": "~5.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Appzcoder\\LaravelAdmin\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Appzcoder\\LaravelAdmin\\LaravelAdminServiceProvider"
+            ]
+        }
+    }
 }

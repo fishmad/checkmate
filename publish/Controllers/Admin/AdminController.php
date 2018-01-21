@@ -13,7 +13,6 @@ class AdminController extends Controller
      */
     public function index()
     {
-        // return view('checkmate::admin.dashboard'); // For use in resources/views/vendor/checkmate/admin/dashboard.blade.php
         return view('admin.dashboard');
     }
 }

@@ -18,8 +18,7 @@ class ProcessController extends Controller
      */
     public function getGenerator()
     {
-        // return view('checkmate::admin.generator');
-        return view('admin.generator');
+        return view('checkmate::generator');
     }
 
     /**
@@ -73,10 +72,22 @@ class ProcessController extends Controller
             $commandArg['--route-group'] = $request->route_group;
         }
 
+        if ($request->has('relationships')) {
+            $commandArg['--relationships'] = $request->relationships;
+        }
+
+        if ($request->has('form_helper')) {
+            $commandArg['--form-helper'] = $request->form_helper;
+        }
+
+        if ($request->has('soft_deletes')) {
+            $commandArg['--soft-deletes'] = $request->soft_deletes;
+        }
+
         try {
             Artisan::call('crud:generate', $commandArg);
 
-            $menus = json_decode(File::get(base_path('resources/views/admin/menus.json')));
+            $menus = json_decode(File::get(base_path('resources/views/admin/partials/menus.json')));
 
             $name = $commandArg['name'];
             $routeName = ($commandArg['--route-group']) ? $commandArg['--route-group'] . '/' . snake_case($name, '-') : snake_case($name, '-');
@@ -92,7 +103,7 @@ class ProcessController extends Controller
                 return $menu;
             }, $menus->menus);
 
-            File::put(base_path('resources/views/admin/menus.json'), json_encode($menus));
+            File::put(base_path('resources/views/admin/partials/menus.json'), json_encode($menus));
 
             Artisan::call('migrate');
         } catch (\Exception $e) {
