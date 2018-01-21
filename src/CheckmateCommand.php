@@ -52,7 +52,7 @@ class CheckmateCommand extends Command
         }
 
         $this->info("Publishing the assets");
-        $this->call('vendor:publish', ['--provider' => 'Appzcoder\CrudGenerator\CrudGeneratorServiceProvider', '--force' => true]);
+        //$this->call('vendor:publish', ['--provider' => 'Appzcoder\CrudGenerator\CrudGeneratorServiceProvider', '--force' => true]);
         $this->call('vendor:publish', ['--provider' => 'Fishmad\Checkmate\CheckmateServiceProvider', '--force' => true]);
 
         $this->info("Dumping the composer autoload");

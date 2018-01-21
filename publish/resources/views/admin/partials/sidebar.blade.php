@@ -1,6 +1,6 @@
 <div class="col-md-3">
 
-    @foreach($laravelAdminMenus->menus as $section)
+    @foreach($checkmateMenus->menus as $section)
         @if($section->items)
             <div class="panel panel-default panel-flush">
                 <div class="panel-heading">

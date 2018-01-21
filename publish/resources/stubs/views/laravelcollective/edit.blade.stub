@@ -1,13 +1,13 @@
-@extends('layouts.app')
+@extends('admin.layouts.master')
 
 @section('content')
     <div class="container">
         <div class="row">
-            @include('admin.sidebar')
+            @include('admin.partials.sidebar')
 
             <div class="col-md-9">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Create New %%modelName%%</div>
+                    <div class="panel-heading">Edit %%modelName%% #{{ $%%crudNameSingular%%->%%primaryKey%% }}</div>
                     <div class="panel-body">
                         <a href="{{ url('/%%routeGroup%%%%viewName%%') }}" title="Back"><button class="btn btn-warning btn-xs"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
                         <br />
@@ -21,9 +21,14 @@
                             </ul>
                         @endif
 
-                        {!! Form::open(['url' => '/%%routeGroup%%%%viewName%%', 'class' => 'form-horizontal', 'files' => true]) !!}
+                        {!! Form::model($%%crudNameSingular%%, [
+                            'method' => 'PATCH',
+                            'url' => ['/%%routeGroup%%%%viewName%%', $%%crudNameSingular%%->%%primaryKey%%],
+                            'class' => 'form-horizontal',
+                            'files' => true
+                        ]) !!}
 
-                        @include ('%%viewTemplateDir%%.form')
+                        @include ('%%viewTemplateDir%%.form', ['submitButtonText' => 'Update'])
 
                         {!! Form::close() !!}
 

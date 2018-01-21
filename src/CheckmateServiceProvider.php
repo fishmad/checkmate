@@ -38,8 +38,12 @@ class CheckmateServiceProvider extends ServiceProvider
         ]);
 
         $this->publishes([
-            __DIR__ . '/../publish/resources/' => base_path('resources'),
+            __DIR__ . '/../publish/resources/views/' => base_path('resources/views'),
         ]);
+
+        $this->publishes([
+          __DIR__ . '/../publish/resources/stubs/' => base_path('resources/stubs'),
+      ]);
 
         $this->publishes([
             __DIR__ . '/../publish/crudgenerator.php' => config_path('crudgenerator.php'),
@@ -54,7 +58,7 @@ class CheckmateServiceProvider extends ServiceProvider
         $menus = [];
         if (File::exists(base_path('resources/views/admin/partials/menus.json'))) {
             $menus = json_decode(File::get(base_path('resources/views/admin/partials/menus.json')));
-            view()->share('CheckmateMenus', $menus);
+            view()->share('checkmateMenus', $menus);
         }
     }
 
@@ -67,6 +71,14 @@ class CheckmateServiceProvider extends ServiceProvider
     {
         $this->commands(
             'Fishmad\Checkmate\CheckmateCommand'
+            // 'Fishmad\Checkmate\Commands\CrudCommand',
+            // 'Fishmad\Checkmate\Commands\CrudControllerCommand',
+            // 'Fishmad\Checkmate\Commands\CrudModelCommand',
+            // 'Fishmad\Checkmate\Commands\CrudMigrationCommand',
+            // 'Fishmad\Checkmate\Commands\CrudViewCommand',
+            // 'Fishmad\Checkmate\Commands\CrudLangCommand',
+            // 'Fishmad\Checkmate\Commands\CrudApiCommand',
+            // 'Fishmad\Checkmate\Commands\CrudApiControllerCommand'
         );
     }
 }
