@@ -21,9 +21,9 @@
     "laravelcollective/html": "5.5.*",
     "orangehill/iseed": "2.5*"
 	},
-	"require-dev": {
-		"orangehill/iseed": "dev-master"
-	},
+	//"require-dev": {
+	//	"orangehill/iseed": "dev-master"
+	//},
 	"autoload": {
 		"psr-4": {
 			"Fishmad\\Checkmate\\": "src/"
