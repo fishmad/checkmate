@@ -74,6 +74,7 @@ Route::get('admin', 'Admin\\AdminController@index');
 Route::resource('admin/roles', 'Admin\\RolesController');
 Route::resource('admin/permissions', 'Admin\\PermissionsController');
 Route::resource('admin/users', 'Admin\\UsersController');
+Route::resource('admin/samples', 'Admin\SamplesController');
 Route::get('admin/generator', ['uses' => '\Fishmad\Checkmate\Controllers\ProcessController@getGenerator']);
 Route::post('admin/generator', ['uses' => '\Fishmad\Checkmate\Controllers\ProcessController@postGenerator']);
 EOD;
