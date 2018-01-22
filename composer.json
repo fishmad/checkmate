@@ -18,8 +18,7 @@
 		"php": ">=7.0.0",
 		"illuminate/support": "5.5.*",
         	"appzcoder/crud-generator": "^3.0",
-		"laravelcollective/html": "5.5.*",
-		"orangehill/iseed": "dev-master"
+		"laravelcollective/html": "5.5.*"
 	},
 	"autoload": {
 		"psr-4": {
