@@ -19,7 +19,7 @@
 		"illuminate/support": "5.5.*",
     		"appzcoder/crud-generator": "^3.0",
     		"laravelcollective/html": "5.5.*",
-    		"orangehill/iseed": "2.5*"
+    		"orangehill/iseed": "2.5.*"
 	},
 	"autoload": {
 		"psr-4": {
