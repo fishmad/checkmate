@@ -1,13 +1,13 @@
 {
 	"name": "fishmad/checkmate",
-    "license": "MIT",
+  "license": "MIT",
 	"description": "Checkmate Dashboard & Crudmin",
-    "keywords": [
-        "laravel",
-        "checkmate panel",
-        "laravel checkmate",
-        "checkmate"
-    ],
+  "keywords": [
+    "laravel",
+    "checkmate panel",
+    "laravel checkmate",
+    "checkmate"
+  ],
 	"authors": [
 		{
 			"name": "fishmad",
@@ -17,7 +17,7 @@
 	"require": {
 		"php": ">=7.0.0",
 		"illuminate/support": "5.5.*",
-        	"appzcoder/crud-generator": "^3.0",
+    "appzcoder/crud-generator": "^3.0",
 		"laravelcollective/html": "5.5.*"
 	},
 	"require-dev": {
@@ -35,5 +35,5 @@
 			]
 		}
 	},
-    	"minimum-stability": "stable"
+  "minimum-stability": "stable"
 }
