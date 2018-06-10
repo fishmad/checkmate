@@ -87,7 +87,7 @@ class ProcessController extends Controller
         try {
             Artisan::call('crud:generate', $commandArg);
 
-            $menus = json_decode(File::get(base_path('resources/views/_partials/menus.json')));
+            $menus = json_decode(File::get(base_path('resources/views/layouts/partials/menus.json')));
 
             $name = $commandArg['name'];
             $routeName = ($commandArg['--route-group']) ? $commandArg['--route-group'] . '/' . snake_case($name, '-') : snake_case($name, '-');
@@ -104,13 +104,13 @@ class ProcessController extends Controller
                 return $menu;
             }, $menus->menus);
 
-            File::put(base_path('resources/views/_partials/menus.json'), json_encode($menus));
+            File::put(base_path('resources/views/layouts/partials/menus.json'), json_encode($menus));
 
             Artisan::call('migrate');
         } catch (\Exception $e) {
             return Response::make($e->getMessage(), 500);
         }
 
-        return redirect('tools/crud')->with('flash_message', 'Your CRUD has been generated. See on the menu.');
+        return redirect('crud')->with('flash_message', 'Your CRUD has been generated. See on the menu.');
     }
 }

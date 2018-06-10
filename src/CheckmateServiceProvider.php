@@ -56,8 +56,8 @@ class CheckmateServiceProvider extends ServiceProvider
          $this->loadViewsFrom(__DIR__ . '/views', 'checkmate');
 
         $menus = [];
-        if (File::exists(base_path('resources/views/_partials/menus.json'))) {
-            $menus = json_decode(File::get(base_path('resources/views/_partials/menus.json')));
+        if (File::exists(base_path('resources/views/layouts/partials/menus.json'))) {
+            $menus = json_decode(File::get(base_path('resources/views/layouts/partials/menus.json')));
             view()->share('checkmateMenus', $menus);
         }
     }
