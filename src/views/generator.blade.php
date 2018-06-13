@@ -23,13 +23,16 @@
                 <div class="form-group row">
                   <label for="crud_name" class="col-md-3 col-xl-2 col-form-label">Crud name:
                     <small id="emailHelp" class="form-text text-muted">
-                    (Sentencecase) singular
+                    Singular in Sentencecase
                     </small>
                    </label>
                   <div class="col">
-                    <input type="text" name="crud_name" class="form-control" id="crud_name" placeholder="" required="true">
+                    <input type="text" name="crud_name" class="form-control" id="crud_name" placeholder="Dog" required="true">
                     <small id="emailHelp" class="form-text text-muted">
-                    Auto: Controller = Actor; SQL-table = actors;  view path = \actors;  url route = /actors/index.php
+                      Enter "Dog " you get: model = Dog.php, controller = DogController.php, route = Route::resource('dog', 'DogController');, dbtable = dogs; <br />
+                      Enter "dog " you get: model = dog.php, controller = dogController.php, route = Route::resource('dog', 'DogController');, dbtable = dogs; <br />
+                      Enter "Cats" you get: model = Cat.php, controller = CatsController.php, route = Route::resource('cats', 'CatsController');, dbtable = cats; <br /><br />
+                      What we need you get: model = Cat.php, controller = CatController.php, route = Route::resource('cats', 'CatController');, dbtable = cat; <br />
                     </small>
                   </div>
                 </div>
