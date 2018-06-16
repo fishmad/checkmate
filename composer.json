@@ -14,6 +14,13 @@
 			"email": "fishmadwebdesign@gmail.com"
 		}
 	],
+	"require": {
+		"php": ">=7.0.0",
+		"illuminate/support": "5.5.*",
+        "appzcoder/crud-generator": "dev-fishmad",
+        "laravelcollective/html": "5.5.*",
+        "orangehill/iseed": "2.5.*"
+    },
 	"repositories":
 	[
         {
@@ -21,13 +28,6 @@
             "url": "http://github.com/fishmad/crud-generator"
         }
 	],
-	"require": {
-		"php": ">=7.0.0",
-		"illuminate/support": "5.5.*",
-            "appzcoder/crud-generator": "dev-fishmad",
-    		"laravelcollective/html": "5.5.*",
-    		"orangehill/iseed": "2.5.*"
-	},
 	"autoload": {
 		"psr-4": {
 			"Fishmad\\Checkmate\\": "src/"
