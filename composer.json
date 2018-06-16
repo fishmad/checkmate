@@ -9,15 +9,22 @@
     "checkmate"
   ],
 	"authors": [
-	{
-		"name": "fishmad",
-		"email": "fishmadwebdesign@gmail.com"
-	}
-],
+		{
+			"name": "fishmad",
+			"email": "fishmadwebdesign@gmail.com"
+		}
+	],
+	"repositories":
+	[
+        {
+            "type": "vcs",
+            "url": "http://github.com/fishmad/crud-generator"
+        }
+	],
 	"require": {
 		"php": ">=7.0.0",
 		"illuminate/support": "5.5.*",
-    		"appzcoder/crud-generator": "^3.0",
+            "appzcoder/crud-generator": "dev-fishmad",
     		"laravelcollective/html": "5.5.*",
     		"orangehill/iseed": "2.5.*"
 	},

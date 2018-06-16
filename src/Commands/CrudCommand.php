@@ -162,7 +162,17 @@ class CrudCommand extends Command
      */
     protected function addRoutes()
     {
-        return ["Route::resource('" . $this->routeName . "', '" . $this->controller . "');"];
+
+        return
+        [
+            "Route::get('" . $this->routeName . "/datatables', '" . $this->controller . "@datatables');",
+            "Route::resource('" . $this->routeName . "', '" . $this->controller . "');"
+        ];
+    
+    
+        // Route::get('users/datatables', 'UserController@datatables');
+        // Route::resource('users', 'UserController');
+    
     }
 
     /**

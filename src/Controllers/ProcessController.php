@@ -111,6 +111,7 @@ class ProcessController extends Controller
             return Response::make($e->getMessage(), 500);
         }
 
-        return redirect('crud')->with('flash_message', 'Your CRUD has been generated. See on the menu.');
+        //return redirect('crud')->with('flash_message', 'Your CRUD has been generated. See on the menu.');
+        return redirect(route($routeName))->withSuccess('Your CRUD has been generated. See on the menu.');
     }
 }
