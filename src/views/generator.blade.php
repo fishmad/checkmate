@@ -182,9 +182,6 @@
                           </button>
                         </div>
                       </div>
-vhjghj
-fgh
-<h1></h1>
 
 <!-- <label class="checkbox-inline">
   <input type="checkbox" checked data-toggle="toggle"> Required
