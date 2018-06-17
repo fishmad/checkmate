@@ -10,7 +10,7 @@
   ],
 	"authors": [
 		{
-			"name": "fishmad",
+            "name": "fishmad",
 			"email": "fishmadwebdesign@gmail.com"
 		}
 	],
@@ -40,5 +40,5 @@
 			]
 		}
 	},
-  "minimum-stability": "stable"
+  "minimum-stability": "dev"
 }
