@@ -7,13 +7,13 @@
           <div class="card">
 
             <div class="card-header">
-							<h2>CRUD Generator
-								<small>
-									Modals are streamlined, but flexible, dialog prompts with 
-                  the minimum required functionality and smart defaults.
-								</small>
-							</h2>
-						</div>
+                <h2>CRUD Generator
+                    <small>
+                        Modals are streamlined, but flexible, dialog prompts with 
+                        the minimum required functionality and smart defaults.
+                    </small>
+                </h2>
+            </div>
 
             <div class="card-body">
 
@@ -23,16 +23,13 @@
                 <div class="form-group row">
                   <label for="crud_name" class="col-md-3 col-xl-2 col-form-label">Crud name:
                     <small id="emailHelp" class="form-text text-muted">
-                    Singular in Sentencecase
+                    Plural &amp; CamelCase only
                     </small>
                    </label>
                   <div class="col">
-                    <input type="text" name="crud_name" class="form-control" id="crud_name" placeholder="Dog" required="true">
+                    <input type="text" name="crud_name" class="form-control" id="crud_name" placeholder="Dogs" required="true">
                     <small id="emailHelp" class="form-text text-muted">
-                      Enter "Dog " you get: model = Dog.php, controller = DogController.php, route = Route::resource('dog', 'DogController');, dbtable = dogs; <br />
-                      Enter "dog " you get: model = dog.php, controller = dogController.php, route = Route::resource('dog', 'DogController');, dbtable = dogs; <br />
-                      Enter "Cats" you get: model = Cat.php, controller = CatsController.php, route = Route::resource('cats', 'CatsController');, dbtable = cats; <br /><br />
-                      What we need you get: model = Cat.php, controller = CatController.php, route = Route::resource('cats', 'CatController');, dbtable = cat; <br />
+                      Enter "Mouses" not "Mice"; 1.Model = Mouse.php, 2.Controller = MousesController.php, 3.Route = Route::resource('mouses', 'MousesController'), 4.DB = mice; <br />
                     </small>
                   </div>
                 </div>
@@ -132,7 +129,7 @@
 
                 
                   
-									<div class="table-fields">
+                                    <div class="table-fields">
                     <div class="entry"><!-- /.entry - Repeats -->
 
                     <div class="form-row">
@@ -185,6 +182,13 @@
                           </button>
                         </div>
                       </div>
+vhjghj
+fgh
+<h1></h1>
+
+<!-- <label class="checkbox-inline">
+  <input type="checkbox" checked data-toggle="toggle"> Required
+</label> -->
 
                     </div><!-- /.form-row -->
                     <hr>
@@ -208,7 +212,12 @@
       </div>
 @endsection
 
+@push('head_scripts')
+<link rel="stylesheet" type="text/css" href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css">
+@endpush
+
 @push('scripts')
+    <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
     <script type="text/javascript">
         $( document ).ready(function() {
 
