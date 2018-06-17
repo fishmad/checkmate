@@ -1,69 +1,68 @@
-@extends('admin.layouts.master')
+@extends('layouts.master')
 
 @section('content')
-    <div class="container">
-        <div class="row">
-            @include('admin.partials.sidebar')
 
-            <div class="col-md-9">
-                <div class="panel panel-default">
-                    <div class="panel-heading">Samples</div>
-                    <div class="panel-body">
-                        <a href="{{ url('/admin/samples/create') }}" class="btn btn-success btn-sm" title="Add New Sample">
-                            <i class="fa fa-plus" aria-hidden="true"></i> Add New
-                        </a>
+      <div class="container-fluid">
+        <div class="animate fadeIn">
 
-                        {!! Form::open(['method' => 'GET', 'url' => '/admin/samples', 'class' => 'navbar-form navbar-right', 'role' => 'search'])  !!}
-                        <div class="input-group">
-                            <input type="text" class="form-control" name="search" placeholder="Search..." value="{{ request('search') }}">
-                            <span class="input-group-btn">
-                                <button class="btn btn-default" type="submit">
-                                    <i class="fa fa-search"></i>
-                                </button>
-                            </span>
-                        </div>
-                        {!! Form::close() !!}
+          @include('samples.includes.confirmModal')
 
-                        <br/>
-                        <br/>
-                        <div class="table-responsive">
-                            <table class="table table-borderless">
-                                <thead>
-                                    <tr>
-                                        <th>#</th><th>Title</th><th>Email</th><th>Date</th><th>Actions</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                @foreach($samples as $item)
-                                    <tr>
-                                        <td>{{ $loop->iteration or $item->id }}</td>
-                                        <td>{{ $item->title }}</td><td>{{ $item->email }}</td><td>{{ $item->date }}</td>
-                                        <td>
-                                            <a href="{{ url('/admin/samples/' . $item->id) }}" title="View Sample"><button class="btn btn-info btn-xs"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>
-                                            <a href="{{ url('/admin/samples/' . $item->id . '/edit') }}" title="Edit Sample"><button class="btn btn-primary btn-xs"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
-                                            {!! Form::open([
-                                                'method'=>'DELETE',
-                                                'url' => ['/admin/samples', $item->id],
-                                                'style' => 'display:inline'
-                                            ]) !!}
-                                                {!! Form::button('<i class="fa fa-trash-o" aria-hidden="true"></i> Delete', array(
-                                                        'type' => 'submit',
-                                                        'class' => 'btn btn-danger btn-xs',
-                                                        'title' => 'Delete Sample',
-                                                        'onclick'=>'return confirm("Confirm delete?")'
-                                                )) !!}
-                                            {!! Form::close() !!}
-                                        </td>
-                                    </tr>
-                                @endforeach
-                                </tbody>
-                            </table>
-                            <div class="pagination-wrapper"> {!! $samples->appends(['search' => Request::get('search')])->render() !!} </div>
-                        </div>
+          <div class="card">
 
-                    </div>
-                </div>
+            <div class="card-header">
+              <a href="{{ route('samples.create') }}" class="btn btn-outline-primary float-right">
+                Create a new Record
+              </a>
+              <h2><i class="fa fa-align-justify"></i> <strong>Samples</strong> Register 
+                <small>
+                  Create, read, update and delete samples from this screen.
+                </small>
+              </h2>
             </div>
-        </div>
-    </div>
+
+            <div class="card-body">
+
+              <table id="datatable" data-toggle="dataTable" data-form="deleteForm" class="table table-responsive-sm" cellspacing="0" width="100%">
+                <thead>
+                  <tr>
+@foreach ($columns as $tbl_headers => $table_title)
+@if ($table_title === "created_at" || $table_title === "updated_at" || $table_title === "password" || $table_title === "remember_token" )
+@else
+                    <th>{{ str_replace('_', ' ', title_case(($table_title))) }}</th>
+@endif
+@endforeach
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                </tbody>
+              </table>
+
+            </div><!-- ./card-body-->
+
+            <div class="card-footer">
+              Samples list
+            </div>
+
+          </div><!-- ./card-->
+        </div><!-- ./animate fadeIn-->
+
+      </div><!-- ./container || container-fluid-->
+
 @endsection
+
+@push('head_scripts')
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/jszip-2.5.0/dt-1.10.16/b-1.5.1/b-colvis-1.5.1/b-flash-1.5.1/b-html5-1.5.1/b-print-1.5.1/cr-1.4.1/fc-3.2.4/fh-3.1.3/r-2.2.1/rg-1.0.2/sl-1.2.5/datatables.min.css"/>
+@endpush
+
+@include('samples.includes.dataTablesLogic')
+
+@push('scripts')
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/pdfmake.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/vfs_fonts.js"></script>
+  <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/jszip-2.5.0/dt-1.10.16/b-1.5.1/b-colvis-1.5.1/b-flash-1.5.1/b-html5-1.5.1/b-print-1.5.1/cr-1.4.1/fc-3.2.4/fh-3.1.3/r-2.2.1/rg-1.0.2/sl-1.2.5/datatables.min.js"></script>
+  {{--  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.12.11/sweetalert2.all.js"></script>  --}}
+  <script type="text/javascript" src="https://unpkg.com/sweetalert2@7.12.12/dist/sweetalert2.all.js"></script>
+  <!-- Optional: include a polyfill for ES6 Promises for IE11 and Android browser -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
+@endpush

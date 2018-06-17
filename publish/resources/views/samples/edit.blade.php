@@ -1,40 +1,51 @@
-@extends('admin.layouts.master')
+@extends('layouts.master')
 
 @section('content')
-    <div class="container">
-        <div class="row">
-            @include('admin.partials.sidebar')
 
-            <div class="col-md-9">
-                <div class="panel panel-default">
-                    <div class="panel-heading">Edit Sample #{{ $sample->id }}</div>
-                    <div class="panel-body">
-                        <a href="{{ url('/admin/samples') }}" title="Back"><button class="btn btn-warning btn-xs"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
-                        <br />
-                        <br />
+      <div class="container">
+        <div class="animate fadeIn">
+          <div class="card">
 
-                        @if ($errors->any())
-                            <ul class="alert alert-danger">
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        @endif
+            <div class="card-header">
+              <a href="{{ route('samples.index') }}" data-toggle="tooltip" title="Any changes you made will not be saved..." class="btn btn-outline-primary float-right">
+                <i class="fa fa-arrow-left"></i> Back
+              </a>
+              <h2><i class="fa fa-align-justify"></i> <strong>Edit</strong> Sample
+                <small>
+                  {{ $sample->name }}
+                </small>
+              </h2>
+            </div><!-- ./card-header-->
 
-                        {!! Form::model($sample, [
-                            'method' => 'PATCH',
-                            'url' => ['/admin/samples', $sample->id],
-                            'class' => 'form-horizontal',
-                            'files' => true
-                        ]) !!}
+            <div class="card-body">
 
-                        @include ('admin.samples.form', ['submitButtonText' => 'Update'])
+              @if ($errors->any())
+              <ul class="alert alert-danger">
+                @foreach ($errors->all() as $error)
+                  <li>{{ $error }}</li>
+                @endforeach
+              </ul>
+              @endif
 
-                        {!! Form::close() !!}
+              {!! Form::model($sample, [
+                'method' => 'PATCH',
+                'url' => ['samples', $sample->id],
+                'class' => 'form-horizontal',
+                'files' => true
+              ]) !!}
 
-                    </div>
-                </div>
+              @include ('samples.form', ['submitButtonText' => 'Update Sample'])
+
+              {!! Form::close() !!}
+
+            </div><!-- ./card-body-->
+
+            <div class="card-footer">
+              Sample edit form
             </div>
-        </div>
-    </div>
+
+          </div><!-- ./card-->
+        </div><!-- ./animate fadeIn-->
+      </div><!-- ./container-fluid-->
+
 @endsection

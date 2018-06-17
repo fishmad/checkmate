@@ -5,11 +5,25 @@ namespace DummyNamespace;
 use DummyRootNamespaceHttp\Requests;
 use DummyRootNamespaceHttp\Controllers\Controller;
 
+use Illuminate\Support\Facades\Gate;
 use DummyRootNamespace{{modelNamespace}}{{modelName}};
+use DB;
+use Yajra\Datatables\Datatables;
 use Illuminate\Http\Request;
 
 class DummyClass extends Controller
 {
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+
     /**
      * Display a listing of the resource.
      *
@@ -17,17 +31,65 @@ class DummyClass extends Controller
      */
     public function index(Request $request)
     {
-        $keyword = $request->get('search');
-        $perPage = {{pagination}};
+        /* Permissions: add '{{crudName}}_all' and '{{crudName}}_browse_list' into the Permissions list and assign them to a authorised user */
+        // if (Gate::denies('{{crudName}}_browse_list')) {
+        //     if (Gate::denies('{{crudName}}_all')) {
+        //         return abort(401, '401 Unauthorized! User does not have required permission to access this resource.');
+        //     }
+        // }
 
-        if (!empty($keyword)) {
-            ${{crudName}} = {{modelName}}::{{whereSnippet}}paginate($perPage);
-        } else {
-            ${{crudName}} = {{modelName}}::paginate($perPage);
-        }
+        ${{crudName}} = {{modelName}}::all();
 
-        return view('{{viewPath}}{{viewName}}.index', compact('{{crudName}}'));
+        /* Dynamic */
+        $columns = DB::getSchemaBuilder()->getColumnListing('{{crudName}}');
+        // /* Targeted */
+        // $columns = ['id', 'name', 'date'];     
+
+        return view('{{viewPath}}{{viewName}}.index', compact('columns', '{{crudName}}'));
     }
+
+
+    public function datatables()
+    {
+        /* Permissions: add '{{crudName}}_all' and '{{crudName}}_browse_list' into the Permissions list and assign them to a authorised user */
+        // if (Gate::denies('{{crudName}}_browse_list')) {
+        //     if (Gate::denies('{{crudName}}_all')) {
+        //         return abort(401, '401 Unauthorized! User does not have required permission to access this resource.');
+        //     }
+        // }
+
+        // ${{crudName}}s = {{crudName}}::select(['id', 'name', 'updated_at']);
+        ${{crudName}} = {{modelName}}::all();
+
+        return Datatables::of(${{crudName}})
+
+        ->addColumn('action', function (${{crudName}}) {
+          return ('
+            <a href="/{{crudName}}/' . ${{crudName}}->id . '/edit" title="Edit" class="btn btn-success btn-sm">
+            <i class="fa fa-fw fa-edit"></i>
+            </a>
+            <a href="/{{crudName}}/' . ${{crudName}}->id . '" title="View" class="btn btn-primary btn-sm">
+            <i class="fa fa-fw fa-search-plus"></i>
+            </a>
+            <form method="POST" action="/{{crudName}}/' . ${{crudName}}->id . '" accept-charset="UTF-8" style="display:inline">
+              <input name="_method" type="hidden" value="DELETE">
+              <input name="_token" type="hidden" value="' . csrf_token() . '">
+              <button type="button" class="btn btn-sm btn-danger" title="Delete" data-toggle="modal" data-target="#confirmDelete" data-title="Confirm delete" 
+                data-message="Last chance! this action can not be reversed. Are you sure you want to delete the {{crudName}} with ID: ' . ${{crudName}}->id . ', ' . ${{crudName}}->name . '?">
+              <i class="fa fa-trash-o" aria-hidden="true"></i>
+              </button>
+            </form>
+          ');
+        })
+
+        // ->addColumn('action', function (${{crudName}}) {
+        //   return view('{{crudName}}.includes.actionButtons', compact('{{crudName}}'))->render();
+        // })
+
+        ->rawColumns(['action'])
+        ->make(true);
+    }
+
 
     /**
      * Show the form for creating a new resource.
@@ -36,8 +98,16 @@ class DummyClass extends Controller
      */
     public function create()
     {
+        /* Permissions: add '{{crudName}}_all' and '{{crudName}}_add_create' into the Permissions list and assign them to a authorised user */
+        // if (Gate::denies('{{crudName}}_add_create')) {
+        //     if (Gate::denies('{{crudName}}_all')) {
+        //         return abort(401, '401 Unauthorized! User does not have required permission to access this resource.');
+        //     }
+        // }
+        
         return view('{{viewPath}}{{viewName}}.create');
     }
+
 
     /**
      * Store a newly created resource in storage.
@@ -48,13 +118,23 @@ class DummyClass extends Controller
      */
     public function store(Request $request)
     {
-        {{validationRules}}
+        /* Permissions: add '{{crudName}}_all' and '{{crudName}}_add_create' into the Permissions list and assign them to a authorised user */
+        // if (Gate::denies('{{crudName}}_add_create')) {
+        //     if (Gate::denies('{{crudName}}_all')) {
+        //         return abort(401, '401 Unauthorized! User does not have required permission to access this resource.');
+        //     }
+        // }
+
+        $this->validate($request, [
+          'name' => 'required'
+        ]);
+
         $requestData = $request->all();
-        {{fileSnippet}}
         {{modelName}}::create($requestData);
 
-        return redirect('{{routeGroup}}{{viewName}}')->with('flash_message', '{{modelName}} added!');
+        return redirect('{{routeGroup}}{{viewName}}')->with('success', '{{modelName}} added!');
     }
+
 
     /**
      * Display the specified resource.
@@ -65,10 +145,18 @@ class DummyClass extends Controller
      */
     public function show($id)
     {
-        ${{crudNameSingular}} = {{modelName}}::findOrFail($id);
+        /* Permissions: add '{{crudName}}_all' and '{{crudName}}_read_show' into the Permissions list and assign them to a authorised user */
+        // if (Gate::denies('{{crudName}}_read_show')) {
+        //     if (Gate::denies('{{crudName}}_all')) {
+        //         return abort(401, '401 Unauthorized! User does not have required permission to access this resource.');
+        //     }
+        // }
 
-        return view('{{viewPath}}{{viewName}}.show', compact('{{crudNameSingular}}'));
+        ${{crudName}} = {{modelName}}::findOrFail($id);
+
+        return view('{{viewPath}}{{viewName}}.show', compact('{{crudName}}'));
     }
+
 
     /**
      * Show the form for editing the specified resource.
@@ -79,10 +167,18 @@ class DummyClass extends Controller
      */
     public function edit($id)
     {
-        ${{crudNameSingular}} = {{modelName}}::findOrFail($id);
+        /* Permissions: add '{{crudName}}_all' and '{{crudName}}_edit_update' into the Permissions list and assign them to a authorised user */
+        // if (Gate::denies('{{crudName}}_edit_update')) {
+        //     if (Gate::denies('{{crudName}}_all')) {
+        //         return abort(401, '401 Unauthorized! User does not have required permission to access this resource.');
+        //     }
+        // }
 
-        return view('{{viewPath}}{{viewName}}.edit', compact('{{crudNameSingular}}'));
+        ${{crudName}} = {{modelName}}::findOrFail($id);
+
+        return view('{{viewPath}}{{viewName}}.edit', compact('{{crudName}}'));
     }
+
 
     /**
      * Update the specified resource in storage.
@@ -94,16 +190,25 @@ class DummyClass extends Controller
      */
     public function update(Request $request, $id)
     {
-        {{validationRules}}
-        $requestData = $request->all();
-        {{fileSnippet}}
-        ${{crudNameSingular}} = {{modelName}}::findOrFail($id);
-        ${{crudNameSingular}}->update($requestData);
+        /* Permissions: add '{{crudName}}_all' and '{{crudName}}_edit_update' into the Permissions list and assign them to a authorised user */
+        // if (Gate::denies('{{crudName}}_edit_update')) {
+        //     if (Gate::denies('{{crudName}}_all')) {
+        //         return abort(401, '401 Unauthorized! User does not have required permission to access this resource.');
+        //     }
+        // }
 
-        return redirect('{{routeGroup}}{{viewName}}')->with('flash_message', '{{modelName}} updated!');
+        $this->validate($request, [
+          'name' => 'required'
+        ]);
+        
+        ${{crudName}} = {{modelName}}::findOrFail($id);
+        ${{crudName}}->update($request->all());
+
+        return redirect(route('{{routeGroup}}{{viewName}}.index'))->withSuccess('{{modelName}} was updated!');
     }
 
-    /**
+
+     /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
@@ -112,8 +217,18 @@ class DummyClass extends Controller
      */
     public function destroy($id)
     {
+        /* Permissions: add '{{crudName}}_all' and '{{crudName}}_delete_destroy' into the Permissions list and assign them to a authorised user */
+        // if (Gate::denies('{{crudName}}_delete_destroy')) {
+        //     if (Gate::denies('{{crudName}}_all')) {
+        //         return abort(401, '401 Unauthorized! User does not have required permission to access this resource.');
+        //     }
+        // }
+
+        ${{crudName}} = {{modelName}}::findOrFail($id);
         {{modelName}}::destroy($id);
 
         return redirect('{{routeGroup}}{{viewName}}')->with('flash_message', '{{modelName}} deleted!');
     }
+
+
 }
